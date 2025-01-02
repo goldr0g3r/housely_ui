@@ -1,0 +1,126 @@
+@function brand-color($color) {
+  $brand-color: (
+    900: #0e1d70,
+    800: #192252,
+    700: #2540a8,
+    600: #3658c9,
+    500: #4a74ea,
+    400: #769af2,
+    300: #92b2f8,
+    200: #b7cffc,
+    100: #dbe8fd,
+  );
+  @if map-has-key($brand-color, $color) {
+    @return map-get($brand-color, $color);
+  } @else {
+    @error "Unknown `#{$color}` in $brand-color.";
+    @return null;
+  }
+}
+
+@function primary-color($color) {
+  $primary-color: (
+    900: #192252,
+    800: #2a3563,
+    700: #424f7b,
+    600: #606d93,
+    500: #848fac,
+    400: #a9b4cd,
+    300: #c5d0e6,
+    200: #dfe8f6,
+    100: #eff3fa,
+    0: #ffffff,
+  );
+  @if $color == white {
+    @return map-get($primary-color, 0);
+  }
+  @if map-has-key($primary-color, $color) {
+    @return map-get($primary-color, $color);
+  } @else {
+    @error "Unknown `#{$color}` in $primary-color.";
+    @return null;
+  }
+}
+
+@function accent-color($type, $color) {
+  $error: (
+    900: #7a0925,
+    800: #930f25,
+    700: #b71926,
+    600: #db2424,
+    500: #ff4332,
+    400: #ff7e65,
+    300: #ffa283,
+    200: #ffc7ad,
+    100: #ffe6d6,
+  );
+
+  $warning: (
+    900: #7a4b04,
+    800: #935f07,
+    700: #b77c0b,
+    600: #db9b10,
+    500: #ffbd16,
+    400: #ffd250,
+    300: #ffdf73,
+    200: #ffeca1,
+    100: #fff7d0,
+  );
+
+  $success: (
+    900: #0f595a,
+    800: #1a6d66,
+    700: #298876,
+    600: #3ba285,
+    500: #52bd94,
+    400: #7bd7ab,
+    300: #9bebbc,
+    200: #a1f9b4,
+    100: #cffcd4,
+  );
+
+  $info: (
+    900: #071561,
+    800: #0d1f76,
+    700: #142d92,
+    600: #1d3eaf,
+    500: #2952cc,
+    400: #597fe0,
+    300: #7c9fef,
+    200: #aac4f9,
+    100: #d4e2fc,
+  );
+
+  @if $type == "error" {
+    @if map-has-key($error, $color) {
+      @return map-get($error, $color);
+    } @else {
+      @error "Unknown `#{$color}` in $error.";
+      @return null;
+    }
+  } @else if $type == "warning" {
+    @if map-has-key($warning, $color) {
+      @return map-get($warning, $color);
+    } @else {
+      @error "Unknown `#{$color}` in $warning.";
+      @return null;
+    }
+  } @else if $type == "success" {
+    @if map-has-key($success, $color) {
+      @return map-get($success, $color);
+    } @else {
+      @error "Unknown `#{$color}` in $success.";
+      @return null;
+    }
+  } @else if $type == "info" {
+    @if map-has-key($info, $color) {
+      @return map-get($info, $color);
+    } @else {
+      @error "Unknown `#{$color}` in $info.";
+      @return null;
+    }
+  } @else {
+    @error "Unknown `#{$type}` in accent-color.";
+    @return null;
+  }
+}
